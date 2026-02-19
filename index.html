@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Che tipo di innovatore sei?</title>
+  <meta name="description" content="Quiz rapido: 60 secondi, 4 domande. Scopri il tuo stile di innovazione nei servizi." />
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --card:#121925;
+      --text:#e7eef7;
+      --muted:#a9b6c6;
+      --line:#223046;
+      --accent:#88a9ff;
+      --accent2:#7be3c5;
+      --warn:#ffd38a;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background: radial-gradient(1000px 500px at 20% 0%, #182033, transparent),
+                  radial-gradient(900px 500px at 90% 20%, #10293a, transparent),
+                  var(--bg);
+      color:var(--text);
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      padding:20px;
+    }
+    .wrap{width:min(760px, 100%); }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      margin:6px 0 14px 0;
+      color:var(--muted);
+      letter-spacing:.2px;
+      font-size:14px;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow:0 0 18px rgba(136,169,255,.35);
+    }
+    .card{
+      background:rgba(18,25,37,.92);
+      border:1px solid rgba(34,48,70,.9);
+      border-radius:18px;
+      padding:18px;
+      box-shadow: 0 10px 40px rgba(0,0,0,.35);
+      backdrop-filter: blur(6px);
+    }
+    h1{margin:0 0 10px 0; font-size:26px; line-height:1.15;}
+    p{margin:0 0 12px 0; color:var(--muted); line-height:1.45;}
+    .pill{
+      display:inline-flex; gap:8px; align-items:center;
+      padding:8px 10px; border-radius:999px;
+      background:rgba(136,169,255,.12);
+      border:1px solid rgba(136,169,255,.25);
+      color:var(--text);
+      font-size:13px;
+      margin-bottom:12px;
+    }
+    .progress{
+      height:8px; background:#0e1420; border:1px solid rgba(34,48,70,.9);
+      border-radius:999px; overflow:hidden; margin:12px 0 16px 0;
+    }
+    .bar{height:100%; width:0%; background:linear-gradient(90deg, var(--accent), var(--accent2));}
+    .qtitle{font-size:18px; margin:0 0 12px 0; color:var(--text)}
+    .options{display:grid; gap:10px; margin-top:10px;}
+    button.opt{
+      text-align:left;
+      border-radius:14px;
+      border:1px solid rgba(34,48,70,.95);
+      background:rgba(11,15,20,.55);
+      color:var(--text);
+      padding:12px 12px;
+      font-size:16px;
+      line-height:1.25;
+      cursor:pointer;
+      transition:.15s transform ease, .15s border ease, .15s background ease;
+    }
+    button.opt:hover{transform: translateY(-1px); border-color: rgba(136,169,255,.55);}
+    button.opt:active{transform: translateY(0px);}
+    .row{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;}
+    .btn{
+      border:none; cursor:pointer;
+      border-radius:14px;
+      padding:12px 14px;
+      font-weight:600;
+      font-size:15px;
+    }
+    .primary{
+      background:linear-gradient(135deg, var(--accent), var(--accent2));
+      color:#0b0f14;
+    }
+    .ghost{
+      background:transparent;
+      border:1px solid rgba(34,48,70,.95);
+      color:var(--text);
+    }
+    .small{font-size:13px; color:var(--muted); margin-top:8px;}
+    .resultTag{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px; border-radius:999px;
+      border:1px solid rgba(34,48,70,.95);
+      background:rgba(11,15,20,.35);
+      margin:8px 0 10px 0;
+      color:var(--text);
+      font-weight:600;
+      letter-spacing:.2px;
+    }
+    .hint{
+      background:rgba(255,211,138,.12);
+      border:1px solid rgba(255,211,138,.25);
+      padding:12px 12px;
+      border-radius:14px;
+      color:var(--text);
+      margin-top:12px;
+    }
+    .ctaBox{
+      margin-top:14px;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(34,48,70,.95);
+      background:rgba(11,15,20,.35);
+    }
+    .field{
+      width:100%;
+      border-radius:12px;
+      border:1px solid rgba(34,48,70,.95);
+      background:rgba(11,15,20,.55);
+      color:var(--text);
+      padding:12px;
+      font-size:15px;
+      outline:none;
+    }
+    .field:focus{border-color: rgba(136,169,255,.55);}
+    .hr{height:1px; background:rgba(34,48,70,.75); margin:14px 0;}
+    .note{font-size:12px; color:var(--muted);}
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="brand"><span class="dot"></span> Synergia @ TechCare Expo</div>
+
+    <div class="card" id="app"></div>
+
+    <div class="small">
+      Suggerimento stand: metti “⏱ 60 secondi” vicino al QR.
+    </div>
+  </div>
+
+<script>
+  // === CONFIG ===
+  const QUIZ_TITLE = "Che tipo di innovatore sei nei servizi?";
+  const QUIZ_SUB = "4 domande. 60 secondi. Un risultato breve (e utile).";
+
+  // CTA: sostituisci questi due link con i tuoi (sito, landing, form contatti, LinkedIn, ecc.)
+  const CTA_TALK_URL = "https://synergia.consulting/";      // <-- cambia
+  const CTA_EMAIL_FORM_URL = "https://synergia.consulting/"; // <-- cambia
+
+  // Domande: ogni opzione assegna 1 punto a un profilo (A/B/C/D)
+  const QUESTIONS = [
+    {
+      q: "Quando pensi all’innovazione nei servizi, cosa ti interessa di più?",
+      opts: [
+        { t: "Migliorare l’esperienza e la relazione con le persone", k: "A" },
+        { t: "Rendere le decisioni più basate su evidenze e indicatori", k: "B" },
+        { t: "Far funzionare meglio connessioni e collaborazione tra attori", k: "C" },
+        { t: "Costruire un modello sostenibile nel tempo (strategie e regole chiare)", k: "D" }
+      ]
+    },
+    {
+      q: "Di fronte a un problema complesso, da dove parti di solito?",
+      opts: [
+        { t: "Dall’ascolto e dalla lettura del bisogno sul campo", k: "A" },
+        { t: "Dai dati: cosa sappiamo davvero e cosa manca?", k: "B" },
+        { t: "Dal coordinamento: chi deve parlare con chi?", k: "C" },
+        { t: "Dalla cornice: obiettivi, priorità, vincoli, sostenibilità", k: "D" }
+      ]
+    },
+    {
+      q: "Una tecnologia è davvero utile quando…",
+      opts: [
+        { t: "Rende il lavoro più umano, non più freddo", k: "A" },
+        { t: "Migliora qualità, tracciabilità e uso del dato", k: "B" },
+        { t: "Si integra senza creare nuovi “silos”", k: "C" },
+        { t: "Ha impatto sul sistema (processi, ruoli, governance)", k: "D" }
+      ]
+    },
+    {
+      q: "Se potessi rafforzare UNA dimensione nel tuo contesto, quale sceglieresti?",
+      opts: [
+        { t: "Qualità della relazione e della presa in carico", k: "A" },
+        { t: "Qualità del dato e capacità di leggerlo/usarlo", k: "B" },
+        { t: "Integrazione tra servizi e continuità dei percorsi", k: "C" },
+        { t: "Programmazione, standard e sostenibilità nel tempo", k: "D" }
+      ]
+    }
+  ];
+
+  // Risultati evolutivi: breve + next step
+  const RESULTS = {
+    A: {
+      tag: "Innovatore Relazionale",
+      text: "La tua forza è partire dalle persone: ascolto, fiducia, prossimità. È ciò che rende i servizi davvero efficaci.",
+      evo: "Evoluzione: rendere la relazione scalabile → metodi, strumenti e processi che proteggono la qualità anche quando il sistema cresce."
+    },
+    B: {
+      tag: "Innovatore Analitico",
+      text: "La tua forza è la lucidità: misurare, capire, leggere segnali e indicatori. Porti rigore nelle decisioni.",
+      evo: "Evoluzione: trasformare i dati in scelte condivise → qualità del dato, uso nei processi, e restituzione utile a chi opera."
+    },
+    C: {
+      tag: "Innovatore Sistemico",
+      text: "La tua forza è creare connessioni: integrazione, collaborazione, continuità. Vedi il sistema, non solo il pezzo.",
+      evo: "Evoluzione: dare stabilità alle reti → strumenti operativi, regole chiare e integrazione che regga nel tempo."
+    },
+    D: {
+      tag: "Innovatore Strategico",
+      text: "La tua forza è la visione: sostenibilità, priorità, governance. Ti interessa che il cambiamento duri.",
+      evo: "Evoluzione: tradurre la strategia in operatività → processi concreti, indicatori, e strumenti che aiutano il lavoro quotidiano."
+    }
+  };
+
+  // === APP STATE ===
+  let step = "intro"; // intro | q | result
+  let idx = 0;
+  const score = { A:0, B:0, C:0, D:0 };
+
+  const app = document.getElementById("app");
+
+  function progressPct(){
+    const total = QUESTIONS.length;
+    return Math.round((idx / total) * 100);
+  }
+
+  function reset(){
+    step = "intro"; idx = 0;
+    score.A=0; score.B=0; score.C=0; score.D=0;
+    render();
+  }
+
+  function pickWinner(){
+    // in caso di parità: sceglie l’ordine D > C > B > A (più “sistemico”)
+    const entries = Object.entries(score);
+    const priority = { D:4, C:3, B:2, A:1 };
+    entries.sort((a,b)=>{
+      if (b[1] !== a[1]) return b[1]-a[1];
+      return priority[b[0]]-priority[a[0]];
+    });
+    return entries[0][0];
+  }
+
+  function renderIntro(){
+    app.innerHTML = `
+      <div class="pill">⏱ 60 secondi • 4 domande • risultato evolutivo</div>
+      <h1>${QUIZ_TITLE}</h1>
+      <p>${QUIZ_SUB}</p>
+      <div class="row">
+        <button class="btn primary" id="startBtn">Inizia</button>
+        <button class="btn ghost" id="aboutBtn">Perché questo quiz?</button>
+      </div>
+      <div id="about" style="display:none; margin-top:12px;">
+        <div class="hint">
+          Questo quiz è pensato per chi lavora (o studia) nel socio-sanitario e nella PA.
+          Non valuta competenze: restituisce un <b>stile di innovazione</b> e un <b>passo evolutivo</b>.
+        </div>
+      </div>
+    `;
+    document.getElementById("startBtn").onclick = ()=>{ step="q"; idx=0; render(); };
+    document.getElementById("aboutBtn").onclick = ()=>{
+      const box = document.getElementById("about");
+      box.style.display = (box.style.display==="none" ? "block" : "none");
+    };
+  }
+
+  function renderQuestion(){
+    const q = QUESTIONS[idx];
+    const pct = Math.round(((idx) / QUESTIONS.length) * 100);
+    app.innerHTML = `
+      <div class="pill">Domanda ${idx+1}/${QUESTIONS.length}</div>
+      <div class="progress"><div class="bar" style="width:${pct}%"></div></div>
+      <div class="qtitle">${q.q}</div>
+      <div class="options">
+        ${q.opts.map((o,i)=>`<button class="opt" data-k="${o.k}">${String.fromCharCode(65+i)}) ${o.t}</button>`).join("")}
+      </div>
+      <div class="row">
+        <button class="btn ghost" id="backBtn" ${idx===0?'disabled style="opacity:.5; cursor:not-allowed"':''}>Indietro</button>
+        <button class="btn ghost" id="quitBtn">Ricomincia</button>
+      </div>
+      <div class="note">Suggerimento: rispondi d’istinto. La prima risposta è spesso la più vera.</div>
+    `;
+
+    [...app.querySelectorAll("button.opt")].forEach(btn=>{
+      btn.onclick = ()=>{
+        const k = btn.getAttribute("data-k");
+        score[k] += 1;
+        idx += 1;
+        if (idx >= QUESTIONS.length){
+          step="result";
+        }
+        render();
+      };
+    });
+
+    document.getElementById("backBtn").onclick = ()=>{
+      if (idx===0) return;
+      // Nota: per semplicità non “toglie” il punto dell’ultima risposta (evita complessità in fiera).
+      // Se vuoi indietro perfetto, te lo implemento.
+      idx -= 1;
+      render();
+    };
+
+    document.getElementById("quitBtn").onclick = reset;
+  }
+
+  function renderResult(){
+    const winner = pickWinner();
+    const r = RESULTS[winner];
+
+    app.innerHTML = `
+      <div class="pill">✅ Risultato</div>
+      <h1>Il tuo stile: ${r.tag}</h1>
+      <div class="resultTag">Impronta: ${winner}</div>
+      <p>${r.text}</p>
+      <div class="hint"><b>${r.evo}</b></div>
+
+      <div class="ctaBox">
+        <p style="margin-bottom:8px;">
+          Nei sistemi complessi nessuno stile basta da solo: relazione, dati, integrazione e governance devono dialogare.
+          <br><b>Synergia lavora proprio qui.</b>
+        </p>
+        <div class="row">
+          <a class="btn primary" href="${CTA_TALK_URL}" target="_blank" rel="noopener">Parliamone</a>
+          <a class="btn ghost" href="${CTA_EMAIL_FORM_URL}" target="_blank" rel="noopener">Ricevi un approfondimento</a>
+          <button class="btn ghost" id="againBtn">Rifai il quiz</button>
+        </div>
+        <div class="hr"></div>
+        <div class="note">
+          Tip: se vuoi raccogliere email <i>qui dentro</i> (senza uscire su un link), dimmelo e ti aggiungo salvataggio su Google Sheet (Apps Script) o endpoint.
+        </div>
+      </div>
+    `;
+
+    document.getElementById("againBtn").onclick = reset;
+  }
+
+  function render(){
+    if (step==="intro") return renderIntro();
+    if (step==="q") return renderQuestion();
+    return renderResult();
+  }
+
+  render();
+</script>
+</body>
+</html>
