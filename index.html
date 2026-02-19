@@ -7,28 +7,47 @@
   <meta name="description" content="Quiz rapido: 60 secondi, 4 domande. Scopri il tuo stile di innovazione nei servizi." />
   <style>
     :root{
-      --bg:#0b0f14;
-      --card:#121925;
-      --text:#e7eef7;
-      --muted:#a9b6c6;
-      --line:#223046;
-      --accent:#88a9ff;
-      --accent2:#7be3c5;
-      --warn:#ffd38a;
-    }
+  /* Base Synergia */
+  --paper:#EEEFE6;     /* beige sito */
+  --ink:#0B0B0B;       /* nero testo */
+  --muted:#3B3B3B;     /* grigio testo secondario */
+  --line:rgba(11,11,11,.10);
+
+  /* Gradient Synergia (campionati) */
+  --blue:#85C1F1;
+  --teal:#5CDEBD;
+  --butter:#DAD9A5;
+
+  --lav:#DBD9F9;
+  --lilac:#E8CEFE;
+  --sun:#F1F893;
+  --mint:#D7E5E0;
+  --pale:#DEECC5;
+
+  --card:#FFFFFF;
+
+  /* CTA */
+  --accent: var(--teal);
+  --accent2: var(--blue);
+}
     *{box-sizing:border-box}
     body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      background: radial-gradient(1000px 500px at 20% 0%, #182033, transparent),
-                  radial-gradient(900px 500px at 90% 20%, #10293a, transparent),
-                  var(--bg);
-      color:var(--text);
-      min-height:100vh;
-      display:flex;
-      justify-content:center;
-      padding:20px;
-    }
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  color:var(--ink);
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  padding:20px;
+
+  /* Sfondo “Synergia”: beige + gradient morbidi (post + sito) */
+  background:
+    radial-gradient(900px 650px at 18% 18%, rgba(219,217,249,.85), transparent 60%),
+    radial-gradient(900px 650px at 78% 22%, rgba(133,193,241,.85), transparent 60%),
+    radial-gradient(900px 650px at 70% 65%, rgba(92,222,189,.70), transparent 62%),
+    radial-gradient(900px 650px at 85% 78%, rgba(218,217,165,.75), transparent 62%),
+    linear-gradient(180deg, var(--paper), #FFFFFF 65%);
+}
     .wrap{width:min(760px, 100%); }
     .brand{
       display:flex; align-items:center; gap:12px;
@@ -43,57 +62,55 @@
       box-shadow:0 0 18px rgba(136,169,255,.35);
     }
     .card{
-      background:rgba(18,25,37,.92);
-      border:1px solid rgba(34,48,70,.9);
-      border-radius:18px;
-      padding:18px;
-      box-shadow: 0 10px 40px rgba(0,0,0,.35);
-      backdrop-filter: blur(6px);
-    }
+  background:rgba(255,255,255,.92);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:18px;
+  box-shadow: 0 10px 35px rgba(0,0,0,.08);
+  backdrop-filter: blur(6px);
+}
     h1{margin:0 0 10px 0; font-size:26px; line-height:1.15;}
     p{margin:0 0 12px 0; color:var(--muted); line-height:1.45;}
     .pill{
-      display:inline-flex; gap:8px; align-items:center;
-      padding:8px 10px; border-radius:999px;
-      background:rgba(136,169,255,.12);
-      border:1px solid rgba(136,169,255,.25);
-      color:var(--text);
-      font-size:13px;
-      margin-bottom:12px;
-    }
+  display:inline-flex; gap:8px; align-items:center;
+  padding:8px 10px; border-radius:999px;
+  background:rgba(133,193,241,.18);
+  border:1px solid rgba(11,11,11,.10);
+  color:var(--ink);
+  font-size:13px;
+  margin-bottom:12px;
+}
     .progress{
-      height:8px; background:#0e1420; border:1px solid rgba(34,48,70,.9);
-      border-radius:999px; overflow:hidden; margin:12px 0 16px 0;
-    }
-    .bar{height:100%; width:0%; background:linear-gradient(90deg, var(--accent), var(--accent2));}
+  height:8px;
+  background:rgba(255,255,255,.65);
+  border:1px solid var(--line);
+  border-radius:999px;
+  overflow:hidden;
+  margin:12px 0 16px 0;
+}
+    .bar{height:100%; width:0%; background:linear-gradient(90deg, var(--teal), var(--blue));}
     .qtitle{font-size:18px; margin:0 0 12px 0; color:var(--text)}
     .options{display:grid; gap:10px; margin-top:10px;}
     button.opt{
-      text-align:left;
-      border-radius:14px;
-      border:1px solid rgba(34,48,70,.95);
-      background:rgba(11,15,20,.55);
-      color:var(--text);
-      padding:12px 12px;
-      font-size:16px;
-      line-height:1.25;
-      cursor:pointer;
-      transition:.15s transform ease, .15s border ease, .15s background ease;
-    }
-    button.opt:hover{transform: translateY(-1px); border-color: rgba(136,169,255,.55);}
-    button.opt:active{transform: translateY(0px);}
-    .row{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;}
-    .btn{
-      border:none; cursor:pointer;
-      border-radius:14px;
-      padding:12px 14px;
-      font-weight:600;
-      font-size:15px;
-    }
+  text-align:left;
+  border-radius:14px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.70);
+  color:var(--ink);
+  padding:12px 12px;
+  font-size:16px;
+  line-height:1.25;
+  cursor:pointer;
+  transition:.15s transform ease, .15s border ease, .15s background ease;
+}
+button.opt:hover{
+  transform: translateY(-1px);
+  border-color: rgba(11,11,11,.22);
+}
     .primary{
-      background:linear-gradient(135deg, var(--accent), var(--accent2));
-      color:#0b0f14;
-    }
+  background:linear-gradient(135deg, rgba(92,222,189,.95), rgba(133,193,241,.95));
+  color:var(--ink);
+}
     .ghost{
       background:transparent;
       border:1px solid rgba(34,48,70,.95);
@@ -340,9 +357,9 @@
           <button class="btn ghost" id="againBtn">Rifai il quiz</button>
         </div>
         <div class="hr"></div>
-        <div class="note">
-          Tip: se vuoi raccogliere email <i>qui dentro</i> (senza uscire su un link), dimmelo e ti aggiungo salvataggio su Google Sheet (Apps Script) o endpoint.
-        </div>
+       <div class="note">
+  Synergia — www.synergia-net.it
+</div>
       </div>
     `;
 
@@ -359,3 +376,4 @@
 </script>
 </body>
 </html>
+
