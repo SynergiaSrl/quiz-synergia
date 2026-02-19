@@ -6,14 +6,16 @@
   <title>Che tipo di innovatore sei?</title>
   <meta name="description" content="Quiz rapido: 60 secondi, 4 domande. Scopri il tuo stile di innovazione nei servizi." />
   <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
     :root{
   /* Base Synergia */
-  --paper:#EEEFE6;     /* beige sito */
-  --ink:#0B0B0B;       /* nero testo */
-  --muted:#3B3B3B;     /* grigio testo secondario */
+  --paper:#EEEFE6;
+  --ink:#0B0B0B;
+  --muted:#3B3B3B;
   --line:rgba(11,11,11,.10);
 
-  /* Gradient Synergia (campionati) */
+  /* Gradient Synergia */
   --blue:#85C1F1;
   --teal:#5CDEBD;
   --butter:#DAD9A5;
@@ -29,11 +31,15 @@
   /* CTA */
   --accent: var(--teal);
   --accent2: var(--blue);
+
+  /* TechCare */
+  --techcare:#F28C00;
+  --techcareSoft: rgba(242,140,0,.14);
 }
     *{box-sizing:border-box}
     body{
   margin:0;
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
   color:var(--ink);
   min-height:100vh;
   display:flex;
@@ -50,12 +56,45 @@
 }
     .wrap{width:min(760px, 100%); }
     .brand{
-      display:flex; align-items:center; gap:12px;
-      margin:6px 0 14px 0;
-      color:var(--muted);
-      letter-spacing:.2px;
-      font-size:14px;
-    }
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin:6px 0 14px 0;
+}
+
+.brandLeft{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-width: 0;
+}
+
+.logo{
+  height:22px;
+  width:auto;
+  display:block;
+}
+
+.brandText{
+  color:var(--muted);
+  font-size:14px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.chipTechcare{
+  display:inline-flex;
+  align-items:center;
+  padding:8px 10px;
+  border-radius:999px;
+  font-size:13px;
+  font-weight:650;
+  color:var(--ink);
+  background: var(--techcareSoft);
+  border:1px solid rgba(11,11,11,.10);
+}
     .dot{
       width:10px; height:10px; border-radius:999px;
       background: linear-gradient(135deg, var(--accent), var(--accent2));
@@ -69,16 +108,21 @@
   box-shadow: 0 10px 35px rgba(0,0,0,.08);
   backdrop-filter: blur(6px);
 }
-    h1{margin:0 0 10px 0; font-size:26px; line-height:1.15;}
+    h1{margin:0 0 10px 0; font-size:28px; line-height:1.12; letter-spacing:-.4px;}
     p{margin:0 0 12px 0; color:var(--muted); line-height:1.45;}
-    .pill{
-  display:inline-flex; gap:8px; align-items:center;
-  padding:8px 10px; border-radius:999px;
-  background:rgba(133,193,241,.18);
-  border:1px solid rgba(11,11,11,.10);
-  color:var(--ink);
-  font-size:13px;
-  margin-bottom:12px;
+    pill{
+  position:relative;
+}
+
+.pill::after{
+  content:"";
+  position:absolute;
+  left:10px;
+  right:10px;
+  bottom:-6px;
+  height:3px;
+  border-radius:999px;
+  background: linear-gradient(90deg, transparent, rgba(242,140,0,.35), transparent);
 }
     .progress{
   height:8px;
@@ -107,15 +151,38 @@ button.opt:hover{
   transform: translateY(-1px);
   border-color: rgba(11,11,11,.22);
 }
+    .btn{
+  border:none;
+  cursor:pointer;
+  border-radius:16px;
+  padding:12px 16px;
+  font-weight:700;
+  font-size:15px;
+  letter-spacing:.1px;
+  transition:.15s transform ease, .15s box-shadow ease;
+}
     .primary{
   background:linear-gradient(135deg, rgba(92,222,189,.95), rgba(133,193,241,.95));
   color:var(--ink);
+  box-shadow: 0 10px 22px rgba(0,0,0,.10);
 }
+
     .ghost{
-      background:transparent;
-      border:1px solid rgba(34,48,70,.95);
-      color:var(--text);
-    }
+  background:rgba(255,255,255,.75);
+  border:1px solid var(--line);
+  color:var(--ink);
+}
+    .ghost:hover{
+  border-color: rgba(242,140,0,.45);
+  box-shadow: 0 10px 20px rgba(242,140,0,.10);
+}
+    .btn:hover{
+  transform: translateY(-1px);
+}
+
+.btn:active{
+  transform: translateY(0px);
+}
     .small{font-size:13px; color:var(--muted); margin-top:8px;}
     .resultTag{
       display:inline-flex; align-items:center; gap:8px;
@@ -161,7 +228,13 @@ button.opt:hover{
 </head>
 <body>
   <div class="wrap">
-    <div class="brand"><span class="dot"></span> Synergia @ TechCare Expo</div>
+    <div class="brand">
+  <div class="brandLeft">
+    <img class="logo" src="synergia-logo.png" alt="Synergia">
+    <span class="brandText">TechCare Expo • Rimini</span>
+  </div>
+  <span class="chipTechcare">26–27 marzo</span>
+</div>
 
     <div class="card" id="app"></div>
 
@@ -217,7 +290,26 @@ button.opt:hover{
         { t: "Programmazione, standard e sostenibilità nel tempo", k: "D" }
       ]
     }
-  ];
+  ],
+    {
+      q: "Quando pensi a migliorare un servizio, cosa eviti di più?",
+      opts: [
+        { t: "Soluzioni che allontanano le persone dal servizio", k: "A" },
+        { t: "Decisioni prese senza evidenze minime", k: "B" },
+        { t: "Interventi “a pezzi” senza continuità tra attori", k: "C" },
+        { t: "Cambiamenti non sostenibili o non governati", k: "D" }
+      ]
+     }
+  ],
+    {
+      q: "Se dovessi definire il tuo contributo ideale, quale frase ti somiglia di più?",
+      opts: [
+        { t: "Rendo i servizi più accessibili e umani", k: "A" },
+        { t: "Rendo i servizi più leggibili, misurabili e migliorabili", k: "B" },
+        { t: "Rendo i servizi più integrati e connessi", k: "C" },
+        { t: "Rendo i servizi più solidi, coerenti e duraturi", k: "D" }
+      ]
+    };
 
   // Risultati evolutivi: breve + next step
   const RESULTS = {
@@ -278,8 +370,8 @@ button.opt:hover{
       <h1>${QUIZ_TITLE}</h1>
       <p>${QUIZ_SUB}</p>
       <div class="row">
-        <button class="btn primary" id="startBtn">Inizia</button>
-        <button class="btn ghost" id="aboutBtn">Perché questo quiz?</button>
+        <button class="btn primary">Inizia</button>
+        <button class="btn ghost">Perché questo quiz?</button>
       </div>
       <div id="about" style="display:none; margin-top:12px;">
         <div class="hint">
@@ -376,4 +468,5 @@ button.opt:hover{
 </script>
 </body>
 </html>
+
 
