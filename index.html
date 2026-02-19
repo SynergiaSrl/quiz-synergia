@@ -459,13 +459,25 @@ button.opt:hover{
   font-weight:700;
   color:rgba(11,11,11,.60);
 }
+    .accentDot{
+  width:8px;
+  height:8px;
+  border-radius:999px;
+  background: var(--techcare); /* usa l’arancione già definito */
+  display:inline-block;
+  margin-right:8px;
+  transform: translateY(-1px); /* allineamento ottico */
+}
 
   </style>
 </head>
 <body>
   <div class="wrap">
     <div class="topbar">
-  <div class="topbarTitle">Synergia @ TechCare Expo</div>
+  <div class="topbarTitle">
+  <span class="accentDot"></span>
+  Synergia @ TechCare Expo
+</div>
   <div class="topbarDate">26–27 marzo</div>
 </div>
 
@@ -716,6 +728,7 @@ button.opt:hover{
 </script>
 </body>
 </html>
+
 
 
 
