@@ -33,8 +33,8 @@
   --accent2: var(--blue);
 
   /* TechCare */
-  --techcare:#F28C00;
-  --techcareSoft: rgba(242,140,0,.14);
+ --techcare:#FF7A00;                 /* più vivo */
+--techcareSoft: rgba(255,122,0,.16); /* soft ma presente */
 }
     *{box-sizing:border-box}
     body{
@@ -62,12 +62,8 @@
   gap:12px;
   margin:6px 0 14px 0;
 }
-.row{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-top:14px;
-}
+.row{display:flex; gap:12px; flex-wrap:wrap; margin-top:18px;}
+.btn{border-radius:18px; padding:13px 18px;}
 
 .brandLeft{
   display:flex;
@@ -77,9 +73,11 @@
 }
 
 .logo{
-  height:22px;
+  height:32px;        /* più visibile */
   width:auto;
   display:block;
+  object-fit:contain;
+  image-rendering:auto;
 }
 
 .brandText{
@@ -91,15 +89,8 @@
 }
 
 .chipTechcare{
-  display:inline-flex;
-  align-items:center;
-  padding:8px 10px;
-  border-radius:999px;
-  font-size:13px;
-  font-weight:650;
-  color:var(--ink);
   background: var(--techcareSoft);
-  border:1px solid rgba(11,11,11,.10);
+  border:1px solid rgba(255,122,0,.22);
 }
     .dot{
       width:10px; height:10px; border-radius:999px;
@@ -109,26 +100,36 @@
     .card{
   background:rgba(255,255,255,.92);
   border:1px solid var(--line);
-  border-radius:18px;
-  padding:18px;
-  box-shadow: 0 10px 35px rgba(0,0,0,.08);
+  border-radius:22px;
+  padding:26px;
+  box-shadow: 0 14px 40px rgba(0,0,0,.08);
   backdrop-filter: blur(6px);
 }
-    h1{margin:0 0 10px 0; font-size:28px; line-height:1.12; letter-spacing:-.4px;}
-    p{margin:0 0 12px 0; color:var(--muted); line-height:1.45;}
-    .pill{
+    h1{margin:0 0 14px 0; font-size:30px; line-height:1.12; letter-spacing:-.5px;}
+p{margin:0 0 16px 0; color:var(--muted); line-height:1.55;}
+.qtitle{font-size:19px; margin:0 0 14px 0; color:var(--ink); line-height:1.35;}
+   .pill{
+  display:inline-flex;
+  gap:8px;
+  align-items:center;
+  padding:10px 12px;
+  border-radius:999px;
+  background:rgba(133,193,241,.18);
+  border:1px solid var(--line);
+  color:var(--ink);
+  font-size:13px;
+  margin-bottom:18px;
   position:relative;
 }
-
 .pill::after{
   content:"";
   position:absolute;
-  left:10px;
-  right:10px;
-  bottom:-6px;
-  height:3px;
+  left:14px;
+  right:14px;
+  bottom:-8px;
+  height:4px;
   border-radius:999px;
-  background: linear-gradient(90deg, transparent, rgba(242,140,0,.35), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255,122,0,.45), transparent);
 }
     .progress{
   height:8px;
@@ -140,8 +141,8 @@
 }
     .bar{height:100%; width:0%; background:linear-gradient(90deg, var(--teal), var(--blue));}
     .qtitle{font-size:18px; margin:0 0 12px 0; color:var(--ink)}
-    .options{display:grid; gap:10px; margin-top:10px;}
-    button.opt{
+    .options{display:grid; gap:12px; margin-top:14px;}
+button.opt{ padding:14px 14px; border-radius:16px; }
   text-align:left;
   border-radius:14px;
   border:1px solid var(--line);
@@ -191,34 +192,36 @@ button.opt:hover{
 }
     .small{font-size:13px; color:var(--muted); margin-top:8px;}
     .resultTag{
-  display:inline-flex; align-items:center; gap:8px;
-  padding:8px 10px; border-radius:999px;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 12px;
+  border-radius:999px;
   border:1px solid var(--line);
-  background:rgba(255,255,255,.70);
-  margin:8px 0 10px 0;
+  background:rgba(255,255,255,.72);
   color:var(--ink);
-  font-weight:700;
+  font-weight:750;
   letter-spacing:.2px;
+  margin:10px 0 14px 0;
 }
 
 .hint{
-  background:rgba(242,140,0,.10); /* arancio TechCare soft */
-  border:1px solid rgba(242,140,0,.20);
-  padding:12px 12px;
-  border-radius:14px;
+  background:rgba(255,122,0,.10);
+  border:1px solid rgba(255,122,0,.20);
+  padding:14px 14px;
+  border-radius:16px;
   color:var(--ink);
-  margin-top:12px;
+  margin-top:14px;
 }
 
 .ctaBox{
-  margin-top:14px;
-  padding:12px 12px;
-  border-radius:14px;
+  margin-top:18px;
+  padding:14px 14px;
+  border-radius:16px;
   border:1px solid var(--line);
-  background:rgba(255,255,255,.72);
+  background:rgba(255,255,255,.78);
 }
-
-.hr{height:1px; background:var(--line); margin:14px 0;}
+.hr{height:1px; background:var(--line); margin:16px 0;}
     .field{
       width:100%;
       border-radius:12px;
@@ -443,64 +446,28 @@ button.opt:hover{
   app.innerHTML = `
     <div class="pill">✅ Risultato</div>
     <h1>Il tuo stile: ${r.tag}</h1>
-    <div class="resultTag">Impronta: ${winner}</div>
+    <div class="resultTag">Profilo: ${winner}</div>
+
     <p>${r.text}</p>
     <div class="hint"><b>${r.evo}</b></div>
 
     <div class="ctaBox">
       <p style="margin-bottom:10px;">
         <b>Grazie per aver partecipato!</b><br>
-        Passa allo stand per <b>riscattare il tuo regalo</b> e fare due chiacchiere con noi.
+        <b>Riscatta il tuo regalo:</b> segnalibro in bamboo <b>oppure</b> paper.<br>
+        <span style="color:var(--muted);">Rivolgiti allo stand e mostraci questa schermata: parliamone.</span>
       </p>
-
-      <div class="row">
-        <button class="btn primary" id="redeemBtn">Riscatta il regalo</button>
-        <button class="btn ghost" id="paperBtn">Chiedi il paper</button>
-        <button class="btn ghost" id="againBtn">Rifai il quiz</button>
-      </div>
-
-      <div id="redeemBox" style="display:none; margin-top:12px;">
-        <div class="hint">
-          🎁 <b>Riscatto:</b> mostra questa schermata allo stand e scegli:
-          <ul style="margin:8px 0 0 18px; color:var(--muted);">
-            <li><b>Segnalibro in bamboo</b></li>
-            <li><b>Paper / approfondimento</b> (te lo diamo o te lo inviamo)</li>
-          </ul>
-          <div style="margin-top:10px; color:var(--muted);">
-            “Parliamone”: ci interessa capire cosa stai provando a innovare nel tuo contesto.
-          </div>
-        </div>
-      </div>
-
-      <div id="paperBox" style="display:none; margin-top:12px;">
-        <div class="hint">
-          📄 <b>Paper:</b> chiedicelo allo stand.<br>
-          Se preferisci riceverlo via email, lo raccogliamo direttamente lì (senza link).
-        </div>
-      </div>
 
       <div class="hr"></div>
       <div class="note">Synergia — www.synergia-net.it</div>
+
+      <div class="row">
+        <button class="btn ghost" id="againBtn">Rifai il test</button>
+      </div>
     </div>
   `;
 
   document.getElementById("againBtn").onclick = reset;
-
-  document.getElementById("redeemBtn").onclick = ()=>{
-    const box = document.getElementById("redeemBox");
-    const other = document.getElementById("paperBox");
-    other.style.display = "none";
-    box.style.display = (box.style.display==="none" ? "block" : "block");
-    box.scrollIntoView({behavior:"smooth", block:"nearest"});
-  };
-
-  document.getElementById("paperBtn").onclick = ()=>{
-    const box = document.getElementById("paperBox");
-    const other = document.getElementById("redeemBox");
-    other.style.display = "none";
-    box.style.display = (box.style.display==="none" ? "block" : "block");
-    box.scrollIntoView({behavior:"smooth", block:"nearest"});
-  };
 }
 
   function render(){
@@ -513,6 +480,7 @@ button.opt:hover{
 </script>
 </body>
 </html>
+
 
 
 
