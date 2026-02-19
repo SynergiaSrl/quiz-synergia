@@ -272,6 +272,149 @@ button.opt:hover{
     .note{font-size:12px; color:var(--muted);}
     a{color:var(--accent); text-decoration:none}
     a:hover{text-decoration:underline}
+    /* ===== Modern refresh (incolla in fondo al <style>) ===== */
+
+:root{
+  --shadow: 0 18px 50px rgba(15, 23, 42, .10);
+  --shadow2: 0 10px 26px rgba(15, 23, 42, .10);
+  --glass: rgba(255,255,255,.70);
+  --glass2: rgba(255,255,255,.55);
+}
+
+/* tipografia più “moderna” */
+.wrap{ width:min(780px, 100%); }
+h1{ font-size:32px; letter-spacing:-.6px; }
+p{ font-size:16px; }
+
+/* header minimal ma premium */
+.brandSimple{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 14px;
+  border-radius:999px;
+  background: rgba(255,255,255,.55);
+  border: 1px solid rgba(11,11,11,.08);
+  box-shadow: 0 10px 26px rgba(15, 23, 42, .08);
+  color: rgba(11,11,11,.75);
+  font-weight: 750;
+}
+
+/* card: più premium (glass + ombra morbida) */
+.card{
+  border-radius:26px;
+  padding:28px;
+  background: rgba(255,255,255,.74);
+  border: 1px solid rgba(11,11,11,.08);
+  box-shadow: var(--shadow);
+}
+
+/* pill: sobria, senza underline, con micro-glass */
+.pill{
+  background: rgba(255,255,255,.62);
+  border: 1px solid rgba(11,11,11,.08);
+  padding:10px 14px;
+  margin-bottom:18px;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, .06);
+}
+
+/* progress più elegante */
+.progress{
+  height:10px;
+  background: rgba(255,255,255,.60);
+  border: 1px solid rgba(11,11,11,.08);
+}
+.bar{
+  background: linear-gradient(90deg, rgba(92,222,189,.95), rgba(133,193,241,.95));
+}
+
+/* bottoni moderni */
+.btn{
+  border-radius:18px;
+  padding:13px 18px;
+  font-weight: 800;
+  letter-spacing: .1px;
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+}
+
+.primary{
+  background: linear-gradient(135deg, rgba(92,222,189,.96), rgba(133,193,241,.96));
+  box-shadow: var(--shadow2);
+  border: 1px solid rgba(11,11,11,.06);
+}
+.ghost{
+  background: rgba(255,255,255,.62);
+  border: 1px solid rgba(11,11,11,.10);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, .06);
+}
+
+.btn:hover{ transform: translateY(-1px); }
+.btn:active{ transform: translateY(0px); }
+
+/* opzioni: aspetto “card button” moderno */
+.options{ gap:12px; margin-top:16px; }
+
+button.opt{
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+  padding:16px 16px;
+  border-radius:20px;
+  border: 1px solid rgba(11,11,11,.10);
+  background: rgba(255,255,255,.62);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, .06);
+}
+
+button.opt:hover{
+  border-color: rgba(11,11,11,.18);
+  box-shadow: 0 16px 34px rgba(15, 23, 42, .10);
+}
+
+/* colonna A/B/C/D: chip pulita (non “testo anni 90”) */
+.optKey{
+  width:34px;
+  flex:0 0 34px;
+  height:34px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:12px;
+  font-weight: 900;
+  font-size:16px;
+  background: rgba(133,193,241,.18);
+  border: 1px solid rgba(11,11,11,.08);
+}
+
+.optText{
+  font-size:17px;
+  line-height:1.35;
+}
+
+/* box info (evo / riscatto): sobrie e leggibili */
+.hint, .ctaBox{
+  background: rgba(255,255,255,.62);
+  border: 1px solid rgba(11,11,11,.10);
+  border-radius:20px;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, .06);
+}
+.hint{
+  padding:16px 16px;
+}
+.ctaBox{
+  padding:16px 16px;
+}
+
+/* “Profilo” pill più chic */
+.resultTag{
+  background: rgba(255,255,255,.62);
+  border: 1px solid rgba(11,11,11,.10);
+  border-radius:999px;
+  padding:10px 14px;
+  font-weight:900;
+}
+
+/* micro-accent TechCare solo nello sfondo (se già presente) + niente box arancio */
+
   </style>
 </head>
 <body>
@@ -440,7 +583,7 @@ button.opt:hover{
       <div class="progress"><div class="bar" style="width:${pct}%"></div></div>
       <div class="qtitle">${q.q}</div>
       <div class="options">
-        ${q.opts.map((o,i)=>`
+       ${q.opts.map((o,i)=>`
   <button class="opt" data-k="${o.k}">
     <span class="optKey">${String.fromCharCode(65+i)}</span>
     <span class="optText">${o.t}</span>
@@ -531,6 +674,7 @@ button.opt:hover{
 </script>
 </body>
 </html>
+
 
 
 
