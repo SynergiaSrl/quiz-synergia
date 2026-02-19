@@ -56,8 +56,16 @@
   linear-gradient(180deg, var(--paper), #FFFFFF 65%);
 }
     .wrap{width:min(760px, 100%); }
-    <div class="brandSimple">Synergia @ TechCare Expo</div>
-.row{display:flex; gap:12px; flex-wrap:wrap; margin-top:18px;}
+    <div class="brandRow">
+  <div class="brandLeft">Synergia @ TechCare Expo</div>
+  <div class="brandDate">26–27 marzo</div>
+</div>
+.row{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:22px;  /* più spazio sopra */
+}
 .btn{border-radius:18px; padding:13px 18px;}
 
 .brandLeft{
@@ -129,17 +137,7 @@ p{margin:0 0 16px 0; color:var(--muted); line-height:1.55;}
   color:var(--ink);
   font-size:13px;
   margin-bottom:18px;
-  position:relative;
-}
-.pill::after{
-  content:"";
-  position:absolute;
-  left:14px;
-  right:14px;
-  bottom:-8px;
-  height:4px;
-  border-radius:999px;
-  background: linear-gradient(90deg, transparent, rgba(255,122,0,.45), transparent);
+
 }
     .progress{
   height:8px;
@@ -269,7 +267,11 @@ button.opt:hover{
     }
     .field:focus{border-color: rgba(136,169,255,.55);}
     .hr{height:1px; background:rgba(34,48,70,.75); margin:14px 0;}
-    .note{font-size:12px; color:var(--muted);}
+   .note{
+  font-size:13px;
+  color:var(--muted);
+  margin-top:18px;  /* separa bene dai bottoni */
+}
     a{color:var(--accent); text-decoration:none}
     a:hover{text-decoration:underline}
     /* ===== Modern refresh (incolla in fondo al <style>) ===== */
@@ -352,7 +354,12 @@ p{ font-size:16px; }
 .btn:active{ transform: translateY(0px); }
 
 /* opzioni: aspetto “card button” moderno */
-.options{ gap:12px; margin-top:16px; }
+.options{
+  display:grid;
+  gap:14px;
+  margin-top:18px;
+  margin-bottom:26px;   /* ← aria sotto risposta D */
+}
 
 button.opt{
   display:flex;
@@ -414,6 +421,25 @@ button.opt:hover{
 }
 
 /* micro-accent TechCare solo nello sfondo (se già presente) + niente box arancio */
+    .brandRow{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:6px 0 18px 0;
+}
+
+.brandLeft{
+  font-weight:800;
+  font-size:14px;
+  letter-spacing:.2px;
+  color:rgba(11,11,11,.80);
+}
+
+.brandDate{
+  font-size:13px;
+  font-weight:700;
+  color:rgba(11,11,11,.60);
+}
 
   </style>
 </head>
@@ -674,6 +700,7 @@ button.opt:hover{
 </script>
 </body>
 </html>
+
 
 
 
