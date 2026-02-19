@@ -62,6 +62,12 @@
   gap:12px;
   margin:6px 0 14px 0;
 }
+.row{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:14px;
+}
 
 .brandLeft{
   display:flex;
@@ -133,7 +139,7 @@
   margin:12px 0 16px 0;
 }
     .bar{height:100%; width:0%; background:linear-gradient(90deg, var(--teal), var(--blue));}
-    .qtitle{font-size:18px; margin:0 0 12px 0; color:var(--text)}
+    .qtitle{font-size:18px; margin:0 0 12px 0; color:var(--ink)}
     .options{display:grid; gap:10px; margin-top:10px;}
     button.opt{
   text-align:left;
@@ -185,36 +191,40 @@ button.opt:hover{
 }
     .small{font-size:13px; color:var(--muted); margin-top:8px;}
     .resultTag{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:8px 10px; border-radius:999px;
-      border:1px solid rgba(34,48,70,.95);
-      background:rgba(11,15,20,.35);
-      margin:8px 0 10px 0;
-      color:var(--text);
-      font-weight:600;
-      letter-spacing:.2px;
-    }
-    .hint{
-      background:rgba(255,211,138,.12);
-      border:1px solid rgba(255,211,138,.25);
-      padding:12px 12px;
-      border-radius:14px;
-      color:var(--text);
-      margin-top:12px;
-    }
-    .ctaBox{
-      margin-top:14px;
-      padding:12px 12px;
-      border-radius:14px;
-      border:1px solid rgba(34,48,70,.95);
-      background:rgba(11,15,20,.35);
-    }
+  display:inline-flex; align-items:center; gap:8px;
+  padding:8px 10px; border-radius:999px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.70);
+  margin:8px 0 10px 0;
+  color:var(--ink);
+  font-weight:700;
+  letter-spacing:.2px;
+}
+
+.hint{
+  background:rgba(242,140,0,.10); /* arancio TechCare soft */
+  border:1px solid rgba(242,140,0,.20);
+  padding:12px 12px;
+  border-radius:14px;
+  color:var(--ink);
+  margin-top:12px;
+}
+
+.ctaBox{
+  margin-top:14px;
+  padding:12px 12px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.72);
+}
+
+.hr{height:1px; background:var(--line); margin:14px 0;}
     .field{
       width:100%;
       border-radius:12px;
       border:1px solid rgba(34,48,70,.95);
       background:rgba(11,15,20,.55);
-      color:var(--text);
+     color:var(--ink);
       padding:12px;
       font-size:15px;
       outline:none;
@@ -246,7 +256,7 @@ button.opt:hover{
 <script>
   // === CONFIG ===
   const QUIZ_TITLE = "Che tipo di innovatore sei nei servizi?";
-  const QUIZ_SUB = "4 domande. 60 secondi. Un risultato breve (e utile).";
+ const QUIZ_SUB = "6 domande. 90 secondi. Un risultato breve (e utile).";
 
   // CTA: sostituisci questi due link con i tuoi (sito, landing, form contatti, LinkedIn, ecc.)
   const CTA_TALK_URL = "https://synergia.consulting/";      // <-- cambia
@@ -365,7 +375,7 @@ button.opt:hover{
 
   function renderIntro(){
     app.innerHTML = `
-      <div class="pill">⏱ 60 secondi • 4 domande • risultato evolutivo</div>
+     <div class="pill">⏱ 90 secondi • 6 domande • risultato evolutivo</div>
       <h1>${QUIZ_TITLE}</h1>
       <p>${QUIZ_SUB}</p>
       <div class="row">
@@ -427,35 +437,71 @@ button.opt:hover{
   }
 
   function renderResult(){
-    const winner = pickWinner();
-    const r = RESULTS[winner];
+  const winner = pickWinner();
+  const r = RESULTS[winner];
 
-    app.innerHTML = `
-      <div class="pill">✅ Risultato</div>
-      <h1>Il tuo stile: ${r.tag}</h1>
-      <div class="resultTag">Impronta: ${winner}</div>
-      <p>${r.text}</p>
-      <div class="hint"><b>${r.evo}</b></div>
+  app.innerHTML = `
+    <div class="pill">✅ Risultato</div>
+    <h1>Il tuo stile: ${r.tag}</h1>
+    <div class="resultTag">Impronta: ${winner}</div>
+    <p>${r.text}</p>
+    <div class="hint"><b>${r.evo}</b></div>
 
-      <div class="ctaBox">
-        <p style="margin-bottom:8px;">
-          Nei sistemi complessi nessuno stile basta da solo: relazione, dati, integrazione e governance devono dialogare.
-          <br><b>Synergia lavora proprio qui.</b>
-        </p>
-        <div class="row">
-          <a class="btn primary" href="${CTA_TALK_URL}" target="_blank" rel="noopener">Parliamone</a>
-          <a class="btn ghost" href="${CTA_EMAIL_FORM_URL}" target="_blank" rel="noopener">Ricevi un approfondimento</a>
-          <button class="btn ghost" id="againBtn">Rifai il quiz</button>
-        </div>
-        <div class="hr"></div>
-       <div class="note">
-  Synergia — www.synergia-net.it
-</div>
+    <div class="ctaBox">
+      <p style="margin-bottom:10px;">
+        <b>Grazie per aver partecipato!</b><br>
+        Passa allo stand per <b>riscattare il tuo regalo</b> e fare due chiacchiere con noi.
+      </p>
+
+      <div class="row">
+        <button class="btn primary" id="redeemBtn">Riscatta il regalo</button>
+        <button class="btn ghost" id="paperBtn">Chiedi il paper</button>
+        <button class="btn ghost" id="againBtn">Rifai il quiz</button>
       </div>
-    `;
 
-    document.getElementById("againBtn").onclick = reset;
-  }
+      <div id="redeemBox" style="display:none; margin-top:12px;">
+        <div class="hint">
+          🎁 <b>Riscatto:</b> mostra questa schermata allo stand e scegli:
+          <ul style="margin:8px 0 0 18px; color:var(--muted);">
+            <li><b>Segnalibro in bamboo</b></li>
+            <li><b>Paper / approfondimento</b> (te lo diamo o te lo inviamo)</li>
+          </ul>
+          <div style="margin-top:10px; color:var(--muted);">
+            “Parliamone”: ci interessa capire cosa stai provando a innovare nel tuo contesto.
+          </div>
+        </div>
+      </div>
+
+      <div id="paperBox" style="display:none; margin-top:12px;">
+        <div class="hint">
+          📄 <b>Paper:</b> chiedicelo allo stand.<br>
+          Se preferisci riceverlo via email, lo raccogliamo direttamente lì (senza link).
+        </div>
+      </div>
+
+      <div class="hr"></div>
+      <div class="note">Synergia — www.synergia-net.it</div>
+    </div>
+  `;
+
+  document.getElementById("againBtn").onclick = reset;
+
+  document.getElementById("redeemBtn").onclick = ()=>{
+    const box = document.getElementById("redeemBox");
+    const other = document.getElementById("paperBox");
+    other.style.display = "none";
+    box.style.display = (box.style.display==="none" ? "block" : "block");
+    box.scrollIntoView({behavior:"smooth", block:"nearest"});
+  };
+
+  document.getElementById("paperBtn").onclick = ()=>{
+    const box = document.getElementById("paperBox");
+    const other = document.getElementById("redeemBox");
+    other.style.display = "none";
+    box.style.display = (box.style.display==="none" ? "block" : "block");
+    box.scrollIntoView({behavior:"smooth", block:"nearest"});
+  };
+}
 
   function render(){
     if (step==="intro") return renderIntro();
@@ -467,6 +513,7 @@ button.opt:hover{
 </script>
 </body>
 </html>
+
 
 
 
