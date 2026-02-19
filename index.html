@@ -110,7 +110,7 @@
 }
     h1{margin:0 0 10px 0; font-size:28px; line-height:1.12; letter-spacing:-.4px;}
     p{margin:0 0 12px 0; color:var(--muted); line-height:1.45;}
-    pill{
+    .pill{
   position:relative;
 }
 
@@ -254,62 +254,61 @@ button.opt:hover{
 
   // Domande: ogni opzione assegna 1 punto a un profilo (A/B/C/D)
   const QUESTIONS = [
-    {
-      q: "Quando pensi all’innovazione nei servizi, cosa ti interessa di più?",
-      opts: [
-        { t: "Migliorare l’esperienza e la relazione con le persone", k: "A" },
-        { t: "Rendere le decisioni più basate su evidenze e indicatori", k: "B" },
-        { t: "Far funzionare meglio connessioni e collaborazione tra attori", k: "C" },
-        { t: "Costruire un modello sostenibile nel tempo (strategie e regole chiare)", k: "D" }
-      ]
-    },
-    {
-      q: "Di fronte a un problema complesso, da dove parti di solito?",
-      opts: [
-        { t: "Dall’ascolto e dalla lettura del bisogno sul campo", k: "A" },
-        { t: "Dai dati: cosa sappiamo davvero e cosa manca?", k: "B" },
-        { t: "Dal coordinamento: chi deve parlare con chi?", k: "C" },
-        { t: "Dalla cornice: obiettivi, priorità, vincoli, sostenibilità", k: "D" }
-      ]
-    },
-    {
-      q: "Una tecnologia è davvero utile quando…",
-      opts: [
-        { t: "Rende il lavoro più umano, non più freddo", k: "A" },
-        { t: "Migliora qualità, tracciabilità e uso del dato", k: "B" },
-        { t: "Si integra senza creare nuovi “silos”", k: "C" },
-        { t: "Ha impatto sul sistema (processi, ruoli, governance)", k: "D" }
-      ]
-    },
-    {
-      q: "Se potessi rafforzare UNA dimensione nel tuo contesto, quale sceglieresti?",
-      opts: [
-        { t: "Qualità della relazione e della presa in carico", k: "A" },
-        { t: "Qualità del dato e capacità di leggerlo/usarlo", k: "B" },
-        { t: "Integrazione tra servizi e continuità dei percorsi", k: "C" },
-        { t: "Programmazione, standard e sostenibilità nel tempo", k: "D" }
-      ]
-    }
-  ],
-    {
-      q: "Quando pensi a migliorare un servizio, cosa eviti di più?",
-      opts: [
-        { t: "Soluzioni che allontanano le persone dal servizio", k: "A" },
-        { t: "Decisioni prese senza evidenze minime", k: "B" },
-        { t: "Interventi “a pezzi” senza continuità tra attori", k: "C" },
-        { t: "Cambiamenti non sostenibili o non governati", k: "D" }
-      ]
-     }
-  ],
-    {
-      q: "Se dovessi definire il tuo contributo ideale, quale frase ti somiglia di più?",
-      opts: [
-        { t: "Rendo i servizi più accessibili e umani", k: "A" },
-        { t: "Rendo i servizi più leggibili, misurabili e migliorabili", k: "B" },
-        { t: "Rendo i servizi più integrati e connessi", k: "C" },
-        { t: "Rendo i servizi più solidi, coerenti e duraturi", k: "D" }
-      ]
-    };
+  {
+    q: "Quando pensi all’innovazione nei servizi, cosa ti interessa di più?",
+    opts: [
+      { t: "Migliorare l’esperienza e la relazione con le persone", k: "A" },
+      { t: "Rendere le decisioni più basate su evidenze e indicatori", k: "B" },
+      { t: "Far funzionare meglio connessioni e collaborazione tra attori", k: "C" },
+      { t: "Costruire un modello sostenibile nel tempo (strategie e regole chiare)", k: "D" }
+    ]
+  },
+  {
+    q: "Di fronte a un problema complesso, da dove parti di solito?",
+    opts: [
+      { t: "Dall’ascolto e dalla lettura del bisogno sul campo", k: "A" },
+      { t: "Dai dati: cosa sappiamo davvero e cosa manca?", k: "B" },
+      { t: "Dal coordinamento: chi deve parlare con chi?", k: "C" },
+      { t: "Dalla cornice: obiettivi, priorità, vincoli, sostenibilità", k: "D" }
+    ]
+  },
+  {
+    q: "Una tecnologia è davvero utile quando…",
+    opts: [
+      { t: "Rende il lavoro più umano, non più freddo", k: "A" },
+      { t: "Migliora qualità, tracciabilità e uso del dato", k: "B" },
+      { t: "Si integra senza creare nuovi “silos”", k: "C" },
+      { t: "Ha impatto sul sistema (processi, ruoli, governance)", k: "D" }
+    ]
+  },
+  {
+    q: "Se potessi rafforzare UNA dimensione nel tuo contesto, quale sceglieresti?",
+    opts: [
+      { t: "Qualità della relazione e della presa in carico", k: "A" },
+      { t: "Qualità del dato e capacità di leggerlo/usarlo", k: "B" },
+      { t: "Integrazione tra servizi e continuità dei percorsi", k: "C" },
+      { t: "Programmazione, standard e sostenibilità nel tempo", k: "D" }
+    ]
+  },
+  {
+    q: "Quando pensi a migliorare un servizio, cosa eviti di più?",
+    opts: [
+      { t: "Soluzioni che allontanano le persone dal servizio", k: "A" },
+      { t: "Decisioni prese senza evidenze minime", k: "B" },
+      { t: "Interventi “a pezzi” senza continuità tra attori", k: "C" },
+      { t: "Cambiamenti non sostenibili o non governati", k: "D" }
+    ]
+  },
+  {
+    q: "Se dovessi definire il tuo contributo ideale, quale frase ti somiglia di più?",
+    opts: [
+      { t: "Rendo i servizi più accessibili e umani", k: "A" },
+      { t: "Rendo i servizi più leggibili, misurabili e migliorabili", k: "B" },
+      { t: "Rendo i servizi più integrati e connessi", k: "C" },
+      { t: "Rendo i servizi più solidi, coerenti e duraturi", k: "D" }
+    ]
+  }
+];
 
   // Risultati evolutivi: breve + next step
   const RESULTS = {
@@ -370,8 +369,8 @@ button.opt:hover{
       <h1>${QUIZ_TITLE}</h1>
       <p>${QUIZ_SUB}</p>
       <div class="row">
-        <button class="btn primary">Inizia</button>
-        <button class="btn ghost">Perché questo quiz?</button>
+        <button class="btn primary" id="startBtn">Inizia</button>
+<button class="btn ghost" id="aboutBtn">Perché questo quiz?</button>
       </div>
       <div id="about" style="display:none; margin-top:12px;">
         <div class="hint">
@@ -468,5 +467,6 @@ button.opt:hover{
 </script>
 </body>
 </html>
+
 
 
