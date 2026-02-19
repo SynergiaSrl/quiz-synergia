@@ -169,9 +169,9 @@ button.opt:hover{
   transition:.15s transform ease, .15s box-shadow ease;
 }
     .primary{
-  background:linear-gradient(135deg, rgba(92,222,189,.95), rgba(133,193,241,.95));
+  background:linear-gradient(135deg, rgba(92,222,189,.95), rgba(255,122,0,.90));
   color:var(--ink);
-  box-shadow: 0 10px 22px rgba(0,0,0,.10);
+  box-shadow: 0 12px 28px rgba(255,122,0,.18);
 }
 
     .ghost{
@@ -206,12 +206,13 @@ button.opt:hover{
 }
 
 .hint{
-  background:rgba(255,122,0,.10);
-  border:1px solid rgba(255,122,0,.20);
-  padding:14px 14px;
-  border-radius:16px;
+  background:rgba(255,122,0,.12);
+  border:1px solid rgba(255,122,0,.25);
+  padding:16px 16px;
+  border-radius:18px;
   color:var(--ink);
   margin-top:14px;
+  font-weight:600;
 }
 
 .ctaBox{
@@ -452,24 +453,37 @@ button.opt:hover{
     <div class="hint"><b>${r.evo}</b></div>
 
     <div class="ctaBox">
-      <p style="margin-bottom:10px;">
-        <b>Grazie per aver partecipato!</b><br>
-        <b>Riscatta il tuo regalo:</b> segnalibro in bamboo <b>oppure</b> paper.<br>
-        <span style="color:var(--muted);">Rivolgiti allo stand e mostraci questa schermata: parliamone.</span>
+      <p style="margin-bottom:14px;">
+        Nei sistemi complessi nessuno stile basta da solo:
+        relazione, dati, integrazione e governance devono dialogare.
+        <br><b>Synergia lavora proprio qui.</b>
       </p>
+
+      <div class="row">
+        <button class="btn primary" id="redeemBtn">Riscatta il tuo regalo</button>
+        <button class="btn ghost" id="againBtn">Rifai il test</button>
+      </div>
+
+      <div id="redeemBox" style="display:none; margin-top:16px;">
+        <div class="hint">
+          🎁 <b>Segnalibro o Paper?</b><br>
+          Mostra questa schermata allo stand e scegli il tuo regalo.
+        </div>
+      </div>
 
       <div class="hr"></div>
       <div class="note">Synergia — www.synergia-net.it</div>
-
-      <div class="row">
-        <button class="btn ghost" id="againBtn">Rifai il test</button>
-      </div>
     </div>
   `;
 
   document.getElementById("againBtn").onclick = reset;
-}
 
+  document.getElementById("redeemBtn").onclick = ()=>{
+    const box = document.getElementById("redeemBox");
+    box.style.display = "block";
+    box.scrollIntoView({behavior:"smooth", block:"nearest"});
+  };
+}
   function render(){
     if (step==="intro") return renderIntro();
     if (step==="q") return renderQuestion();
@@ -480,6 +494,7 @@ button.opt:hover{
 </script>
 </body>
 </html>
+
 
 
 
