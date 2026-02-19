@@ -440,17 +440,33 @@ button.opt:hover{
   font-weight:700;
   color:rgba(11,11,11,.60);
 }
+    .topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:6px 0 18px 0;
+}
+
+.topbarTitle{
+  font-weight:800;
+  font-size:14px;
+  letter-spacing:.2px;
+  color:rgba(11,11,11,.80);
+}
+
+.topbarDate{
+  font-size:13px;
+  font-weight:700;
+  color:rgba(11,11,11,.60);
+}
 
   </style>
 </head>
 <body>
   <div class="wrap">
-    <div class="brand">
-  <div class="brandLeft">
-    <img class="logo" src="synergia-logo.png" alt="Synergia">
-    <span class="brandText">TechCare Expo • Rimini</span>
-  </div>
-  <span class="chipTechcare"><span class="tcDot"></span>26–27 marzo</span>
+    <div class="topbar">
+  <div class="topbarTitle">Synergia @ TechCare Expo</div>
+  <div class="topbarDate">26–27 marzo</div>
 </div>
 
     <div class="card" id="app"></div>
@@ -700,6 +716,7 @@ button.opt:hover{
 </script>
 </body>
 </html>
+
 
 
 
