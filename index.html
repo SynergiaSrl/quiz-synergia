@@ -48,11 +48,12 @@
 
   /* Sfondo “Synergia”: beige + gradient morbidi (post + sito) */
   background:
-    radial-gradient(900px 650px at 18% 18%, rgba(219,217,249,.85), transparent 60%),
-    radial-gradient(900px 650px at 78% 22%, rgba(133,193,241,.85), transparent 60%),
-    radial-gradient(900px 650px at 70% 65%, rgba(92,222,189,.70), transparent 62%),
-    radial-gradient(900px 650px at 85% 78%, rgba(218,217,165,.75), transparent 62%),
-    linear-gradient(180deg, var(--paper), #FFFFFF 65%);
+  radial-gradient(420px 320px at 10% 8%, rgba(255,122,0,.18), transparent 62%), /* puntina TechCare */
+  radial-gradient(900px 650px at 18% 18%, rgba(219,217,249,.85), transparent 60%),
+  radial-gradient(900px 650px at 78% 22%, rgba(133,193,241,.85), transparent 60%),
+  radial-gradient(900px 650px at 70% 65%, rgba(92,222,189,.70), transparent 62%),
+  radial-gradient(900px 650px at 85% 78%, rgba(218,217,165,.75), transparent 62%),
+  linear-gradient(180deg, var(--paper), #FFFFFF 65%);
 }
     .wrap{width:min(760px, 100%); }
     .brand{
@@ -89,8 +90,16 @@
 }
 
 .chipTechcare{
-  background: var(--techcareSoft);
-  border:1px solid rgba(255,122,0,.22);
+  display:inline-flex;
+  align-items:center;
+  padding:0;                 /* niente pill */
+  border-radius:0;
+  font-size:13px;
+  font-weight:700;
+  color:rgba(11,11,11,.72);  /* sobrio */
+  background:transparent;
+  border:none;
+  letter-spacing:.2px;
 }
     .dot{
       width:10px; height:10px; border-radius:999px;
@@ -169,9 +178,9 @@ button.opt:hover{
   transition:.15s transform ease, .15s box-shadow ease;
 }
     .primary{
-  background:linear-gradient(135deg, rgba(92,222,189,.95), rgba(255,122,0,.90));
+  background:linear-gradient(135deg, rgba(92,222,189,.95), rgba(133,193,241,.95));
   color:var(--ink);
-  box-shadow: 0 12px 28px rgba(255,122,0,.18);
+  box-shadow: 0 12px 28px rgba(0,0,0,.10);
 }
 
     .ghost{
@@ -206,13 +215,28 @@ button.opt:hover{
 }
 
 .hint{
-  background:rgba(255,122,0,.12);
-  border:1px solid rgba(255,122,0,.25);
+  background:rgba(255,255,255,.78);
+  border:1px solid var(--line);
   padding:16px 16px;
   border-radius:18px;
   color:var(--ink);
   margin-top:14px;
-  font-weight:600;
+}
+    .hint::before{
+  content:"";
+  display:block;
+  height:3px;
+  border-radius:999px;
+  background: linear-gradient(90deg, rgba(255,122,0,.45), transparent);
+  margin-bottom:10px;
+}
+.tcDot{
+  width:8px;
+  height:8px;
+  border-radius:999px;
+  background:var(--techcare);
+  display:inline-block;
+  margin-right:8px;
 }
 
 .ctaBox{
@@ -247,7 +271,7 @@ button.opt:hover{
     <img class="logo" src="synergia-logo.png" alt="Synergia">
     <span class="brandText">TechCare Expo • Rimini</span>
   </div>
-  <span class="chipTechcare">26–27 marzo</span>
+  <span class="chipTechcare"><span class="tcDot"></span>26–27 marzo</span>
 </div>
 
     <div class="card" id="app"></div>
@@ -494,6 +518,7 @@ button.opt:hover{
 </script>
 </body>
 </html>
+
 
 
 
