@@ -56,13 +56,7 @@
   linear-gradient(180deg, var(--paper), #FFFFFF 65%);
 }
     .wrap{width:min(760px, 100%); }
-    .brand{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  margin:6px 0 14px 0;
-}
+    <div class="brandSimple">Synergia @ TechCare Expo</div>
 .row{display:flex; gap:12px; flex-wrap:wrap; margin-top:18px;}
 .btn{border-radius:18px; padding:13px 18px;}
 
@@ -71,6 +65,13 @@
   align-items:center;
   gap:12px;
   min-width: 0;
+}
+    .brandSimple{
+  margin:6px 0 14px 0;
+  color:rgba(11,11,11,.72);
+  font-size:14px;
+  font-weight:700;
+  letter-spacing:.2px;
 }
 
 .logo{
@@ -151,17 +152,26 @@ p{margin:0 0 16px 0; color:var(--muted); line-height:1.55;}
     .bar{height:100%; width:0%; background:linear-gradient(90deg, var(--teal), var(--blue));}
     .qtitle{font-size:18px; margin:0 0 12px 0; color:var(--ink)}
     .options{display:grid; gap:12px; margin-top:14px;}
-button.opt{ padding:14px 14px; border-radius:16px; }
+button.opt{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
   text-align:left;
-  border-radius:14px;
-  border:1px solid var(--line);
-  background:rgba(255,255,255,.70);
+}
+
+.optKey{
+  width:28px;              /* colonna fissa */
+  flex:0 0 28px;
+  font-weight:800;
+  font-size:18px;          /* più grande */
+  line-height:1.1;
   color:var(--ink);
-  padding:12px 12px;
+}
+
+.optText{
   font-size:16px;
-  line-height:1.25;
-  cursor:pointer;
-  transition:.15s transform ease, .15s border ease, .15s background ease;
+  line-height:1.35;
+  color:var(--ink);
 }
 button.opt:hover{
   transform: translateY(-1px);
@@ -276,9 +286,7 @@ button.opt:hover{
 
     <div class="card" id="app"></div>
 
-    <div class="small">
-      Suggerimento stand: metti “⏱ 60 secondi” vicino al QR.
-    </div>
+
   </div>
 
 <script>
@@ -432,7 +440,12 @@ button.opt:hover{
       <div class="progress"><div class="bar" style="width:${pct}%"></div></div>
       <div class="qtitle">${q.q}</div>
       <div class="options">
-        ${q.opts.map((o,i)=>`<button class="opt" data-k="${o.k}">${String.fromCharCode(65+i)}) ${o.t}</button>`).join("")}
+        ${q.opts.map((o,i)=>`
+  <button class="opt" data-k="${o.k}">
+    <span class="optKey">${String.fromCharCode(65+i)}</span>
+    <span class="optText">${o.t}</span>
+  </button>
+`).join("")}
       </div>
       <div class="row">
         <button class="btn ghost" id="backBtn" ${idx===0?'disabled style="opacity:.5; cursor:not-allowed"':''}>Indietro</button>
@@ -469,7 +482,7 @@ button.opt:hover{
   const r = RESULTS[winner];
 
   app.innerHTML = `
-    <div class="pill">✅ Risultato</div>
+  
     <h1>Il tuo stile: ${r.tag}</h1>
     <div class="resultTag">Profilo: ${winner}</div>
 
@@ -518,6 +531,7 @@ button.opt:hover{
 </script>
 </body>
 </html>
+
 
 
 
