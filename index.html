@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Che tipo di innovatore sei?</title>
-  <meta name="description" content="Quiz rapido: 90 secondi, 6 domande. Scopri il tuo stile di innovazione nei servizi." />
+  <meta name="description" content="Quiz rapido: 90 secondi, 6 domande. Scopri il tuo stile di innovazione!" />
   <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
 
@@ -482,8 +482,8 @@ button.opt:hover{
 
 <script>
   // === CONFIG ===
-  const QUIZ_TITLE = "Che tipo di innovatore sei nei servizi?";
- const QUIZ_SUB = "6 domande. 90 secondi. Un risultato breve (e utile).";
+  const QUIZ_TITLE = "Che tipo di innovatore sei? ✨";
+ const QUIZ_SUB = "6 domande. 90 secondi. Scopri il tuo stile!";
 
   // CTA: sostituisci questi due link con i tuoi (sito, landing, form contatti, LinkedIn, ecc.)
   const CTA_TALK_URL = "https://synergia.consulting/";      // <-- cambia
@@ -547,7 +547,7 @@ button.opt:hover{
   }
 ];
 
-  // Risultati evolutivi: breve + next step
+  // Risultati
   const RESULTS = {
     A: {
       tag: "Innovatore Relazionale",
@@ -602,7 +602,7 @@ button.opt:hover{
 
   function renderIntro(){
     app.innerHTML = `
-     <div class="pill">⏱ 90 secondi • 6 domande • risultato evolutivo</div>
+     <div class="pill">⏱ 90 secondi • 6 domande</div>
       <h1>${QUIZ_TITLE}</h1>
       <p>${QUIZ_SUB}</p>
       <div class="row">
@@ -611,8 +611,8 @@ button.opt:hover{
       </div>
       <div id="about" style="display:none; margin-top:12px;">
         <div class="hint">
-          Questo quiz è pensato per chi lavora (o studia) nel socio-sanitario e nella PA.
-          Non valuta competenze: restituisce un <b>stile di innovazione</b> e un <b>passo evolutivo</b>.
+          Questo quiz è pensato per chi lavora, studia o è impiegato a vario titolo nel settore sociosanitario. Ma è rivolto anche agli appassionati di temi sociali e ai tecnoentusiasti!      
+          Non valuta competenze: restituisce il tuo <b>stile innovativo</b>!
         </div>
       </div>
     `;
@@ -642,7 +642,7 @@ button.opt:hover{
         <button class="btn ghost" id="backBtn" ${idx===0?'disabled style="opacity:.5; cursor:not-allowed"':''}>Indietro</button>
         <button class="btn ghost" id="quitBtn">Ricomincia</button>
       </div>
-      <div class="note">Suggerimento: rispondi d’istinto. La prima risposta è spesso la più vera.</div>
+      <div class="note">Suggerimento: rispondi d’istinto. La prima risposta è spesso la più vera 🔮 </div>
     `;
 
     [...app.querySelectorAll("button.opt")].forEach(btn=>{
@@ -682,8 +682,7 @@ button.opt:hover{
 
     <div class="ctaBox">
       <p style="margin-bottom:14px;">
-        Nei sistemi complessi nessuno stile basta da solo:
-        relazione, dati, integrazione e governance devono dialogare.
+        Il tuo stile è prezioso: lasciati guidare attraverso il cambiamento dalla tua visione prospettica! Anche Synergia ha la sua visione: combina conoscenza, esperienza e innovazione per supportare i sistemi di welfare, trasformando la complessità in risultati concreti.
         <br><b>Synergia lavora proprio qui.</b>
       </p>
 
@@ -722,6 +721,7 @@ button.opt:hover{
 </script>
 </body>
 </html>
+
 
 
 
